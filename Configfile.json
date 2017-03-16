@@ -1,0 +1,119 @@
+ {
+  "configuration": {
+  
+	"recognitionmanager":{
+	  "busses":[
+		{"id":"3",
+		 "stream":"SKELETON",
+		  "busdriverclass":"WebSocketBus",
+		  "ip":"127.0.0.1",
+		  "port":"6000"
+	    }
+	   ],
+	  "probthresh":"0.88"
+	},
+    "mongo": {
+      "processpath": "C:\\Program Files\\MongoDB\\Server\\3.2\\bin\\mongod",
+      "parameters": "--dbpath C:\\mongodata --nojournal --httpinterface --rest"
+    },
+    "controller": {
+      "ip": "127.0.0.1",
+      "port": "8080"
+    },
+    "dbmanager": {
+      "dbname": "test",
+      "ip": "127.0.0.1",
+      "port": "27017"
+    },
+    "devices": {
+      "device": [
+        {
+          "id": "1",
+          "driverclass": "Kinect2Driver",
+          "streams": {
+            "stream": {
+              "name": "SKELETON",
+              "busdriverclass": "WebSocketBus",
+              "ip": "127.0.0.1",
+              "port": "10000"
+            }
+          }
+        },
+        {
+          "id": "2",
+          "driverclass": "RSDriver",
+          "streams": {
+            "stream": {
+              "name": "SKELETON",
+              "busdriverclass": "WebSocketBus",
+              "ip": "127.0.0.1",
+              "port": "10012"
+            }
+          }
+        },
+        {
+          "id": "3",
+          "driverclass": "DummyDriver",
+          "streams": {
+            "stream": [
+              {
+                "name": "SKELETON",
+                "busdriverclass": "WebSocketBus",
+                "ip": "127.0.0.1",
+                "port": "10013"
+              },
+              {
+                "name": "RGB",
+                "busdriverclass": "WebSocketBus",
+                "ip": "127.0.0.1",
+                "port": "11000 "
+              },
+              {
+                "name": "DEPTH",
+                "busdriverclass": "WebSocketBus",
+                "ip": "127.0.0.1",
+                "port": "11001"
+              }
+            ]
+          }
+        },
+		{
+          "id": "4",
+          "driverclass": "CursorDriver",
+          "streams": {
+            "stream": {
+              "name": "CURSOR",
+              "busdriverclass": "WebSocketBus",
+              "ip": "127.0.0.1",
+              "port": "12001"
+            }
+          }
+        },
+		{
+          "id": "5",
+          "driverclass": "Kinect1Driver",
+          "streams": {
+            "stream": {
+              "name": "SKELETON",
+              "busdriverclass": "WebSocketBus",
+              "ip": "127.0.0.1",
+              "port": "12000"
+            }
+          }
+        },
+		{
+          "id": "6",
+          "driverclass": "LeapDriver",
+          "streams": {
+            "stream": {
+              "name": "SKELETON",
+              "busdriverclass": "WebSocketBus",
+              "ip": "127.0.0.1",
+              "port": "12002"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,51 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GestureInteractionServer.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DEVICE_STATE_EXCLUSIVE" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">EXCLUSIVE</Value>
+    </Setting>
+    <Setting Name="DEVICE_STATE_SHARED" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SHARED</Value>
+    </Setting>
+    <Setting Name="DEVICE_STATE_NOT_CONNECTED" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">NOT_CONNECTED</Value>
+    </Setting>
+    <Setting Name="BUS_NOT_MANAGED" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">NOT_MANAGED</Value>
+    </Setting>
+    <Setting Name="BUS_ALREADY_ACTIVATED" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ALREADY_ACTIVATED</Value>
+    </Setting>
+    <Setting Name="BUS_ACTIVATED" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ACTIVATED</Value>
+    </Setting>
+    <Setting Name="DB_DEVICES_COLLECTION" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DEVICES</Value>
+    </Setting>
+    <Setting Name="DB_STREAMS_COLLECTION" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">STREAMS</Value>
+    </Setting>
+    <Setting Name="DB_GESTURES_COLLECTION" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">GESTURES</Value>
+    </Setting>
+    <Setting Name="DEV_OUTTYPE_DEPTH" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DEPTH</Value>
+    </Setting>
+    <Setting Name="DEV_OUTTYPE_RGB" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">RGB</Value>
+    </Setting>
+    <Setting Name="DEV_OUTTYPE_SKELETON" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">SKELETON</Value>
+    </Setting>
+    <Setting Name="DEV_OUTTYPE_CURSOR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CURSOR</Value>
+    </Setting>
+    <Setting Name="DB_STRATEGIES_COLLECTION" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">STRATEGIES</Value>
+    </Setting>
+    <Setting Name="RECO_WINDOW_SIZE" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">25</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
