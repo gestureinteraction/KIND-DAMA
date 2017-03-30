@@ -151,10 +151,19 @@ namespace GestureInteractionServer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("25")]
+        [global::System.Configuration.DefaultSettingValueAttribute("80")]
         public int RECO_WINDOW_SIZE {
             get {
                 return ((int)(this["RECO_WINDOW_SIZE"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int RECO_MINWINDOW_SIZE {
+            get {
+                return ((int)(this["RECO_MINWINDOW_SIZE"]));
             }
         }
     }

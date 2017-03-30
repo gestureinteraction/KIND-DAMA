@@ -120,7 +120,29 @@ namespace Managers
                     BsonArray tmp = b.AsBsonArray;
 
                     m.index2label = new string[b.AsBsonArray.Count];
-                    for (int j = 0; i < b.AsBsonArray.Count; i++)
+                    for (int j = 0; j < b.AsBsonArray.Count; j++)
+                        m.index2label[j] = b.AsBsonArray[j].ToString();
+                    clss.Add(m);
+                }
+
+                if (b.ToString() == "DTWStrategy")
+                {
+                    result[i].TryGetValue("dev_id", out b);
+                    string did = b.ToString();
+                    result[i].TryGetValue("strtype", out b);
+                    string strtype = b.ToString();
+                    //genera errore di lettura, ma materialmente funziona in quanto i parametri di inizializzazione
+                    //per l'hmm non sono più necessari
+                    Logging.Instance.Information(this.GetType(), "Warning:I'm loading strategy without training parameters.This is not an error.");
+                    DTWStrategy m = new DTWStrategy(did, strtype, new object[0]);
+                    result[i].TryGetValue("binclassifier", out b);
+                    m.binclassifier = (byte[])b.RawValue;
+                    m.debinarizemodel();
+                    result[i].TryGetValue("index2label", out b);
+                    BsonArray tmp = b.AsBsonArray;
+
+                    m.index2label = new string[b.AsBsonArray.Count];
+                    for (int j = 0; j < b.AsBsonArray.Count; j++)
                         m.index2label[j] = b.AsBsonArray[j].ToString();
                     clss.Add(m);
                 }
@@ -435,12 +457,73 @@ namespace Managers
             }
             else
             {
-                
+                Logging.Instance.Information(this.GetType(), "Can't insert gesture");
                 return false;
             }
            
 
         }
+
+        public Boolean updateGesture(JointGestureCollectionElement gesture)
+        {
+
+            //effettuare controllo degli errori nell'elemento gesture
+            IMongoCollection<JointGestureCollectionElement> coll;
+            coll = _db.GetCollection<JointGestureCollectionElement>(Settings.Default.DB_GESTURES_COLLECTION);
+            var filter_id = Builders<JointGestureCollectionElement>.Filter.Eq("_id", gesture._id);
+            var entity = coll.Find(filter_id).ToList();
+            if (entity.Count > 0)
+            {
+
+                try
+                {
+                    coll.FindOneAndReplace<JointGestureCollectionElement>(filter_id, gesture);
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+            else
+                return false;
+           
+
+        }
+
+        public Boolean deleteGesture(string devId, string streamName, string gesturePos)
+        {
+
+            int pos = Int32.Parse(gesturePos);
+            //effettuare controllo degli errori nell'elemento gesture
+            IMongoCollection<BsonDocument> coll;
+            coll = _db.GetCollection<BsonDocument>(Settings.Default.DB_GESTURES_COLLECTION);
+        
+
+            List<FilterDefinition<BsonDocument>> l = new List<FilterDefinition<BsonDocument>>();
+            l.Add(Builders<BsonDocument>.Filter.Eq("device_id", devId));
+            l.Add(Builders<BsonDocument>.Filter.Eq("stream", streamName));
+            var result = coll.Find(Builders<BsonDocument>.Filter.And(l)).ToList();
+
+            Console.Write(result.Count);
+            if (result.Count > pos) {
+                BsonDocument doc = result[pos];
+                BsonValue output;
+                doc.TryGetValue("_id", out output);
+
+                ObjectId iddoc = new ObjectId(output.AsBsonValue.ToString());
+                var filterdev = Builders<BsonDocument>.Filter.Eq("_id", iddoc);
+                coll.FindOneAndDelete<BsonDocument>(filterdev,null,default(System.Threading.CancellationToken));
+                return true;
+            }
+            else
+                return false;
+            
+
+
+        }
+
+
 
 
     }

@@ -54,20 +54,20 @@ namespace Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult Update(string gestureId, [FromBody] JointGestureCollectionElement gesture)
+        public IHttpActionResult Update([FromBody] JointGestureCollectionElement gesture)
         {
-            Logging.Instance.Information(this.GetType(), "Received cmd: /gestures/update/?gestureId={0} gesture={1}", gestureId, gesture);
+            Logging.Instance.Information(this.GetType(), "Received cmd: /gestures/update/?gesture={1}", gesture);
+            return Ok(DBManager.Instance.updateGesture(gesture));
+           
 
-            return Ok(64);
-            //            return Ok(DBManager.Instance.retrieve3DGesturesCounter(devId, streamName));
         }
 
         [HttpGet]
         public IHttpActionResult Delete(string devId, string streamName, string gesturePos)
         {
-            Logging.Instance.Information(this.GetType(), "Received cmd: /gestures/delete/?devId={0}&streamName={1}&gesturePos={2}", devId, streamName);
+            Logging.Instance.Information(this.GetType(), "Received cmd: /gestures/delete/?devId={0}&streamName={1}&gesturePos={2}", devId, streamName,gesturePos);
 
-            return Ok(64);
+            return Ok(DBManager.Instance.deleteGesture(devId, streamName, gesturePos));
             //            return Ok(DBManager.Instance.retrieve3DGesturesCounter(devId, streamName));
         }
     }

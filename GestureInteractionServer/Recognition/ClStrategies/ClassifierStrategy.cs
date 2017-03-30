@@ -15,6 +15,7 @@ namespace Recognition.ClStrategies
         public string strtype;
         //converte gli indici di classe in label originaria
         public string[] index2label;
+
         public ClassifierStrategy(string dev_id, string strtype, object[] pars) { this.dev_id = dev_id;this.strtype = strtype; }
         public virtual double test(double[][][] testset, string[] outputs) { return -1; }
         public virtual double train(double[][][] inputs, string[] outputs) { return -1; }

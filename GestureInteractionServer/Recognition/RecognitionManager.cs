@@ -138,6 +138,7 @@ namespace Recognition
         {
             
             List<ClassifierStrategy> cl=DBManager.Instance.retrieveStrategies();
+            
             if (cl.Count != outputs.Count)
             {
                 Logging.Instance.Error(this.GetType(),"Errore numero di bus di output:{0} e numero riconoscitori:{1} non coerenti",outputs.Count,cl.Count);
@@ -178,16 +179,16 @@ namespace Recognition
             //to be removed
             rf.startDBManager();
             //to be removed
+           /*
             Dictionary<string, string[]> s = new Dictionary<string, string[]>();
             s["SKELETON"] = new string[] { "WebSocketBus", "127.0.0.1", "10000" };
-            Console.WriteLine("Errori:"+ rf.trainModel(new Tuple<string, object[]>("HMMStrategy", new Object[] { 16, 0, 0.1, false, 1e-4, true }), "3", "SKELETON", 0.7));
-            //to be removed
-            /*DummyDriver d = new DummyDriver("3", "pippo", "pluto", "paperino", s);
+            RecognitionManager.Instance.trainModel(new Tuple<string, object[]>("DTWStrategy", new Object[] {1}), "3", "SKELETON", 0.7);
+            DummyDriver d = new DummyDriver("3", "pippo", "pluto", "paperino", s);
             d.start(Settings.Default.DEVICE_STATE_EXCLUSIVE);
             d.enableWriteOnBus(Settings.Default.DEV_OUTTYPE_SKELETON);
-            //rf.SaveRecognizer(d, Settings.Default.DEV_OUTTYPE_SKELETON);
-           
-            WebSocketBus ws = new WebSocketBus("127.0.0.1", "11000");
+            RecognitionManager.Instance.SaveRecognizer(d, Settings.Default.DEV_OUTTYPE_SKELETON);
+
+        WebSocketBus ws = new WebSocketBus("127.0.0.1", "11000");
             rf.init(new List<Tuple<string, string, Bus>> { new Tuple<string, string, Bus>( "3", Settings.Default.DEV_OUTTYPE_SKELETON, ws ) }, 0.8);
             rf.startTrackDeviceStream(d, Settings.Default.DEV_OUTTYPE_SKELETON);
             Thread.Sleep(5000);
@@ -207,7 +208,7 @@ namespace Recognition
             string procpars = "--dbpath C:\\mongodata --nojournal --httpinterface --rest";
             Process.Start(new ProcessStartInfo(procpath, procpars));
         }
-     */
+      */
     }
  
 }

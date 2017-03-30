@@ -12,7 +12,7 @@ using System.Reflection;
 using GestureInteractionServer.Properties;
 using Models;
 using Utilities;
-using Managers.DevicesDriver;
+
 
 namespace Managers.DevicesDriver
 {
@@ -27,8 +27,13 @@ namespace Managers.DevicesDriver
         private CoordinateMapper coordinateMapper = null;
         //The current latest frame
         private BodyFrame bodyFrame;
+        private ColorFrame colorFrame;
+        private DepthFrame depthFrame;
         // Reader for body frames
         private BodyFrameReader bodyFrameReader = null;
+        //Reader for RGB and DEPTH
+        private ColorFrameReader rgbreader =null;
+        private DepthFrameReader depthreader = null;
         // Array for the bodies
         private Body[] bodies = null;
         /// Width of display (depth space)
@@ -42,6 +47,7 @@ namespace Managers.DevicesDriver
         public Kinect2Driver(String id, String name, String model, String producer,Dictionary<string,string[]> pars) : base(id, name, model, producer,pars)
         {
             databusparams[Settings.Default.DEV_OUTTYPE_SKELETON] = null;
+          
             //riempio i parametri dei bus
             fillDataBusParamsKeys(pars);
         }
@@ -63,6 +69,8 @@ namespace Managers.DevicesDriver
 
                 // get the depth (display) extents
                 FrameDescription frameDescription = this.kinectSensor.DepthFrameSource.FrameDescription;
+                this.depthreader = this.kinectSensor.DepthFrameSource.OpenReader();
+                this.rgbreader = this.kinectSensor.ColorFrameSource.OpenReader();
 
                 // get size of joint space
                 this.DisplayWidth = frameDescription.Width;
@@ -108,6 +116,7 @@ namespace Managers.DevicesDriver
         }
 
 
+       
         private void pushJointData()
         {
 
@@ -204,6 +213,10 @@ namespace Managers.DevicesDriver
             else return Settings.Default.BUS_NOT_MANAGED;
 
         }
+
+
+
+      
 
 
 
@@ -341,6 +354,9 @@ namespace Managers.DevicesDriver
             {
                 this.Joints.GetType().GetProperty(jointName).SetValue(this.Joints, value);
             }
+
+           
+
 
             public JointsFrameElement ToJointsFrameElement()
             {

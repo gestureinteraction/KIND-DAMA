@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using Utilities.Logger;
 using System.IO;
+using Accord.IO;
 
 namespace Recognition.ClStrategies
 {
@@ -143,7 +144,7 @@ namespace Recognition.ClStrategies
                     File.Delete("c:\\tmp.bin");
 
                 FileStream f = new FileStream("c:\\tmp.bin", FileMode.CreateNew);
-                hmm.Save(f);
+                Serializer.Save<HiddenMarkovClassifier<MultivariateNormalDistribution>>(hmm,f);
                 f.Close();
                 binhmm = File.ReadAllBytes("c:\\tmp.bin");
                 File.Delete("c:\\tmp.bin");
@@ -152,7 +153,7 @@ namespace Recognition.ClStrategies
             {
                 Console.WriteLine(e);
             }
-            
+
         }
         public override void debinarizemodel()
         {
@@ -163,7 +164,7 @@ namespace Recognition.ClStrategies
                     File.Delete("c:\\tmp.bin");
                 System.IO.File.WriteAllBytes("c:\\tmp.bin",binhmm);
                 FileStream stream2 = new FileStream("c:\\tmp.bin", FileMode.Open);
-                hmm = HiddenMarkovClassifier<MultivariateNormalDistribution>.Load(stream2);
+                hmm = Serializer.Load<HiddenMarkovClassifier<MultivariateNormalDistribution>>(stream2);
                 stream2.Close();
                 File.Delete("c:\\tmp.bin");
             }

@@ -38,9 +38,10 @@ namespace Controllers
                         supportedStreams.Add(streamName);
                         Logging.Instance.Information(this.GetType(), streamName);
                     }
-
+                    
                     outp.Add(new DeviceInfo(dev.identifier, dev.name, dev.model, supportedStreams));
                 }
+               
                 return Ok(outp);
             }
             catch(Exception e)
@@ -92,7 +93,7 @@ namespace Controllers
 
                         busses.Add(busInfo);
                     }
-
+                    
                     return Ok(busses);
                 }
                 else
