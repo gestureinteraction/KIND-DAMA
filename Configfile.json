@@ -8,6 +8,12 @@
 		  "busdriverclass":"WebSocketBus",
 		  "ip":"127.0.0.1",
 		  "port":"6000"
+	    },
+		{"id":"2",
+		 "stream":"SKELETON",
+		  "busdriverclass":"WebSocketBus",
+		  "ip":"127.0.0.1",
+		  "port":"12200"
 	    }
 	   ],
 	  "probthresh":"0.88"
