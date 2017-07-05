@@ -15,6 +15,7 @@ using Recognition;
 using Managers.Busses;
 using GestureInteractionServer.Properties;
 
+
 public class Factory
 {
 
@@ -40,13 +41,7 @@ public class Factory
         f.loadRecognizerFacade();
         //avvio il server selfhost
         f.startServer();
-
-
-
         
-        
-
-
         Console.ReadKey();
     }
 

@@ -99,7 +99,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Fleck.dll</HintPath>
     </Reference>
-    <Reference Include="LeapCSharp.NET4.0">
+    <Reference Include="LeapCSharp.NET4.0, Version=2.3.1.0, Culture=neutral, PublicKeyToken=6e1b1368e71eba9b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\LeapCSharp.NET4.0.dll</HintPath>
     </Reference>
     <Reference Include="libpxcclr.cs">
@@ -182,6 +183,11 @@
     <Compile Include="Controllers\DevicesController.cs" />
     <Compile Include="Controllers\GesturesController.cs" />
     <Compile Include="Controllers\RecognitionController.cs" />
+    <Compile Include="Filtering\Filter.cs" />
+    <Compile Include="Filtering\MovingAverageFilter.cs" />
+    <Compile Include="Filtering\TotalVariationFilter.cs" />
+    <Compile Include="Filtering\MedianFilter.cs" />
+    <Compile Include="Filtering\MeanFilter.cs" />
     <Compile Include="Managers\DevicesDriver\Kinect1Driver\AbstractInfo.cs" />
     <Compile Include="Managers\DevicesDriver\Kinect1Driver\HandStatusDetector.cs" />
     <Compile Include="Managers\DevicesDriver\Kinect1Driver\HeatMapDataset.cs" />
@@ -191,6 +197,8 @@
     <Compile Include="Managers\DevicesDriver\CursorDriver.cs" />
     <Compile Include="Managers\DevicesDriver\LeapDriver.cs" />
     <Compile Include="Recognition\ClStrategies\DTWStrategy.cs" />
+    <Compile Include="Recognition\ClStrategies\RecurrentNetworkStrategy.cs" />
+    <Compile Include="Recognition\ClStrategies\RecurrentNetworkModel.cs" />
     <Compile Include="Utilities\TypeSolver.cs" />
     <Compile Include="Utilities\Logger\ILogger.cs" />
     <Compile Include="Managers\DBManager.cs" />

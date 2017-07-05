@@ -34,8 +34,8 @@ namespace Managers.DevicesDriver
             if (notConnected)
             {
                 
-                controller = new Controller();
-               
+                controller = new Leap.Controller();
+                Thread.Sleep(400);
                 if (!controller.IsConnected)
                 {
 
@@ -93,7 +93,7 @@ namespace Managers.DevicesDriver
             while (true)
             {
                 fnew = controller.Frame();
-                Console.WriteLine(fnew.Hands.Count);
+                //Console.WriteLine(fnew.Hands.Count);
                 
                 if (fnew != fold && fnew != null && fnew.Hands.Count>0)
                 {
@@ -106,7 +106,7 @@ namespace Managers.DevicesDriver
                     bus[Settings.Default.DEV_OUTTYPE_SKELETON].receive(this, Settings.Default.DEV_OUTTYPE_SKELETON, JsonConvert.SerializeObject(elem));
 
                 }
-                Thread.Sleep(15);
+                Thread.Sleep(30);
 
 
             }
